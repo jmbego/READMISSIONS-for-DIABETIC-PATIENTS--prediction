@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diabetes Readmission Prediction</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body style="background-image: url('{{ url_for('static', filename='images/png1.avif') }}'); background-size: cover; background-position: center; background-repeat: no-repeat; background-attachment: fixed;">
+    <div class="container">
+        <h1>Diabetes Re-admission Predictor</h1>
+        <p>Enter the required details to predict the likelihood of Readmission.</p>
+
+        <form action="/predict" method="post">
+            <div class="form-grid">
+                <input type="number" name="Encounter ID" placeholder="Encounter ID" required>
+                <input type="number" name="Patient ID" placeholder="Patient ID" required>
+                <input type="number" name="Inpatient visits" placeholder="Inpatient Visits" required>
+                <input type="number" name="Lab Procedures" placeholder="Lab Procedures" required>
+                <input type="text" name="Primary labtest" placeholder="Primary Lab Test" required>
+                <input type="text" name="Secondary labtest" placeholder="Secondary Lab Test" required>
+                <input type="number" name="Generic Medications" placeholder="Generic Medications" required>
+                <input type="text" name="Additional Diagnosis" placeholder="Additional Diagnosis" required>
+                <input type="number" name="Discharge No" placeholder="Discharge No" required>
+                <input type="number" name="Hospital Time" placeholder="Hospital Time (Days)" required>
+                <input type="number" name="Age" placeholder="Age" required>
+                <input type="number" name="Diagnosis Total" placeholder="Diagnosis Total" required>
+            </div>
+
+            <button type="submit">Predict</button>
+        </form>
+
+        {% if prediction_text %}
+            <div class="result">
+                {{ prediction_text }}
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>
